@@ -1,9 +1,13 @@
 pypdf>=4.0,<7
+fonttools>=4,<6
 pandas>=2.2,<3
 requests>=2.31,<3
 python-dotenv>=1.0,<2
 streamlit>=1.36,<2
 pytesseract>=0.3,<1
+pdf2image>=1.17,<2
 Pillow>=10,<13
-reportlab>=4.0,<5
-pytest>=8,<9
+langgraph>=1.2,<2
+epochdb>=1.10,<2
+hnswlib>=0.8,<1
+sentence-transformers>=3,<6

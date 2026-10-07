@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    image: seguramente-projeto-final:local
+    init: true
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      SEGURAMENTE_DATA_DIR: /var/lib/seguramente
+      SEGURAMENTE_ENV_FILE: /var/lib/seguramente/.env
+      SEGURAMENTE_LOG_LEVEL: ${SEGURAMENTE_LOG_LEVEL:-INFO}
+      TQDM_DISABLE: "1"
+      HF_HUB_DISABLE_PROGRESS_BARS: "1"
+    volumes:
+      - app-data:/var/lib/seguramente
+      - model-cache:/home/seguramente/.cache
+    stop_grace_period: 45s
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  app-data:
+  model-cache:

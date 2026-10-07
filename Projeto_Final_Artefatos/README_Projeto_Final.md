@@ -10,10 +10,10 @@ MVP para receber, extrair, estruturar, consultar e comparar duas apólices de se
 
 Preencher antes da entrega oficial:
 
-| Nome | E-mail |
+| Nome | E-mail |>
 |---|---|
-| `[NOME DO INTEGRANTE 1]` | `[E-MAIL]` |
-| `[NOME DO INTEGRANTE 2]` | `[E-MAIL]` |
+| `[Adelson N. de Almeida]` | `[naortier@gmail.com]` |
+| `[Daniel Correa Rodrigues]` | `[E-MAIL]` |
 | `[NOME DO INTEGRANTE 3]` | `[E-MAIL]` |
 
 Os placeholders existem porque os nomes dos integrantes não foram fornecidos nesta execução e não devem ser inventados.

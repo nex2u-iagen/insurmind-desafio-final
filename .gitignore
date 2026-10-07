@@ -9,5 +9,14 @@ venv/
 # Banco local gerado durante a execução
 data/*.db
 
+# Artefatos de execução do grafo (checkpoint, memória e auditoria do gate)
+data/checkpoints/
+data/memoria/
+data/evidence/
+
+# Evidências geradas localmente (as da demonstração versionadas continuam)
+evidence/*_local.json
+evidence/demo_smoke_*.json
+
 # Arquivos temporários de probe/debug
 scripts/probe_*.py

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -79,7 +80,9 @@ draw.text((1070, 680), "INSURMINDS", font=font("regular", 14), fill=MUTED)
 save(image, 1)
 
 # Frame 2 — problem
-image, draw = base("O problema", "Apólices extensas escondem diferenças críticas em limites, coberturas e exclusões.", "02")
+image, draw = base(
+    "O problema", "Apólices extensas escondem diferenças críticas em limites, coberturas e exclusões.", "02"
+)
 draw.rectangle((70, 190, 500, 550), fill=SURFACE, outline=LINE, width=1)
 draw.rectangle((70, 190, 500, 245), fill="#263452")
 draw.text((95, 208), "CONDIÇÕES GERAIS · D&O", font=font("regular", 15), fill=WHITE)
@@ -90,12 +93,24 @@ draw.text((660, 300), "COMPARAÇÃO MANUAL", font=font("bold", 17), fill=AMBER)
 for y, label in [(350, "limites"), (395, "franquias"), (440, "exclusões")]:
     draw.text((660, y), label, font=font("regular", 19), fill=WHITE)
     draw.text((1000, y), "?  /  ?", font=font("mono", 19), fill=MUTED)
-draw.text((70, 600), "O custo oculto: horas de leitura mecânica antes da análise de negócio.", font=font("regular", 20), fill=AMBER)
+draw.text(
+    (70, 600),
+    "O custo oculto: horas de leitura mecânica antes da análise de negócio.",
+    font=font("regular", 20),
+    fill=AMBER,
+)
 save(image, 2)
 
 # Frame 3 — flow
 image, draw = base("Do documento à decisão", "Uma jornada linear, modular e revisável.", "03")
-steps = [(80, "01", "Receber"), (270, "02", "Extrair"), (460, "03", "Estruturar"), (650, "04", "Armazenar"), (840, "05", "Comparar"), (1030, "06", "Revisar")]
+steps = [
+    (80, "01", "Receber"),
+    (270, "02", "Extrair"),
+    (460, "03", "Estruturar"),
+    (650, "04", "Armazenar"),
+    (840, "05", "Comparar"),
+    (1030, "06", "Revisar"),
+]
 for index, (x, num, label) in enumerate(steps):
     fill = AMBER if index == 5 else SURFACE
     text_fill = BG if index == 5 else WHITE
@@ -143,7 +158,12 @@ for x, value, label in metrics:
     draw.text((x + 22, 335), label, font=font("regular", 20), fill=WHITE)
 draw.rectangle((70, 505, 1150, 600), fill=SURFACE2, outline=LINE, width=1)
 draw.text((95, 525), "6 testes automatizados aprovados", font=font("bold", 21), fill=AMBER)
-draw.text((95, 565), "R$ 10 mi vs. R$ 15 mi · R$ 50 mil vs. R$ 100 mil · 24 vs. 36 meses", font=font("regular", 18), fill=WHITE)
+draw.text(
+    (95, 565),
+    "R$ 10 mi vs. R$ 15 mi · R$ 50 mil vs. R$ 100 mil · 24 vs. 36 meses",
+    font=font("regular", 18),
+    fill=WHITE,
+)
 save(image, 5)
 
 print(f"Frames gerados em {OUT}")

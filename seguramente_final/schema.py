@@ -1,4 +1,4 @@
-"""Schema D&O didático e comparável entre apólices."""
+"""Schema D&O didático — 19 campos comparáveis entre duas apólices."""
 
 from __future__ import annotations
 
@@ -23,5 +23,4 @@ FIELD_DEFINITIONS: list[dict[str, str]] = [
     {"category": "condicoes", "label": "Mudança de controle"},
     {"category": "condicoes", "label": "Acordos e consentimento"},
 ]
-
-FIELD_LABELS = {(item["category"], item["label"]): item["label"] for item in FIELD_DEFINITIONS}
+"""Campos (categoria + rótulo) extraídos e comparados por ambos os providers."""

@@ -5,8 +5,8 @@ from __future__ import annotations
 
 import argparse
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -19,7 +19,7 @@ from seguramente_final.pipeline import analyze_policies  # noqa: E402
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--provider", choices=["offline", "openai"], default="offline")
+    parser.add_argument("--provider", choices=["offline", "openai", "groq", "google"], default="offline")
     parser.add_argument("--output", default="evidence/demo_analysis.json")
     args = parser.parse_args()
     result = analyze_policies(
@@ -33,15 +33,25 @@ def main() -> int:
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
     differences = [row for row in result.comparison if row.status not in {"igual", "ambos_ausentes"}]
-    print(json.dumps({
-        "output": str(output.relative_to(ROOT)),
-        "documents": len(result.documents),
-        "pages": sum(len(doc.pages) for doc in result.documents),
-        "fields": len(result.comparison),
-        "differences_or_gaps": len(differences),
-        "provider": result.provider,
-        "model": result.model,
-    }, ensure_ascii=False))
+    try:
+        rotulo = str(output.relative_to(ROOT))
+    except ValueError:  # --output fora do repositório (ex.: /tmp)
+        rotulo = str(output)
+    print(
+        json.dumps(
+            {
+                "output": rotulo,
+                "documents": len(result.documents),
+                "pages": sum(len(doc.pages) for doc in result.documents),
+                "fields": len(result.comparison),
+                "differences_or_gaps": len(differences),
+                "provider": result.provider,
+                "model": result.model,
+                "fallback_offline": result.fallback_offline,
+            },
+            ensure_ascii=False,
+        )
+    )
     return 0
 
 
